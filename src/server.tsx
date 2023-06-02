@@ -5,16 +5,17 @@ const app = express();
 const port = 3000;
 
 // 정적 파일 제공
-app.use(express.static(path.join(__dirname,'/src')));
+app.use(express.static(path.join(__dirname,'/build')));
 
 // 모든 요청에 index.html 반환
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/index.html'));
+  res.sendFile(path.join(__dirname, '../build/index.html'));
 });
 
 app.use(express.static(path.join(__dirname)));
-app.get('/build/bundle.js', (req, res) => {
-  res.sendFile(path.join(__dirname,'../build/bundle.js'));
+
+app.get('/dist/bundle.js', (req, res) => {
+  res.sendFile(path.join(__dirname,'../dist/bundle.js'));
 });
 // 서버 시작
 app.listen(port, () => {
